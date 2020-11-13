@@ -18,7 +18,6 @@ body {
 }
 
 body {
-
     font-family: 'Nunito', sans-serif;
     font-size: 1.8rem;
     font-weight: 400;
@@ -29,10 +28,16 @@ a {
     text-decoration: none;
 }
 
-a, a:hover {
-    
+a,
+a:hover {
     -webkit-transition: all .4s ease-in-out;
     -moz-box-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
+}
 
+.main {
+    width: 100%;
+    max-width: 1450px;
+    padding: 0 10px;
+    margin: 0 auto;
 }

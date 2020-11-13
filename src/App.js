@@ -5,11 +5,12 @@ import Homepage from './pages/Homepage'
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
       <Header />
-      <Homepage/>
-    </div>
-  );
+      <div className="main" >
+        <Homepage />
+      </div> </div >
+    );
 }
 
 export default App;
