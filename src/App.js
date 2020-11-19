@@ -29,21 +29,23 @@ class App extends Component {
 
   componentDidMount() {
     this.authListener = auth.onAuthStateChanged(async userAuth => {
-     if (userAuth){
-       const userRef = await handleUserProfile(userAuth);
-       userRef.onSnapshot(snapshot => {
-         this.setState({
-           currentUser:{
-             id: snapshot.id,
-             ...snapshot.data()
-           }
-         })
-       })
-     }
+      if (userAuth) {
+        const userRef = await handleUserProfile(userAuth);
+        if (userRef) {
+          userRef.onSnapshot(snapshot => {
+            this.setState({
+              currentUser: {
+                id: snapshot.id,
+                ...snapshot.data()
+              }
+            })
+          })
+        }
+      }
 
-     this.setState({
-       ...initialState
-     });
+      this.setState({
+        ...initialState
+      });
 
     });
   }
