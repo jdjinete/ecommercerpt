@@ -31,7 +31,6 @@ class App extends Component {
     this.authListener = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await handleUserProfile(userAuth);
-        if (userRef) {
           userRef.onSnapshot(snapshot => {
             this.setState({
               currentUser: {
@@ -40,7 +39,6 @@ class App extends Component {
               }
             })
           })
-        }
       }
 
       this.setState({
@@ -66,7 +64,7 @@ class App extends Component {
             </HomepageLayout>
           )}
           />
-          <Route path="/registration" render={() => (
+          <Route path="/registration" render={() =>  currentUser ? <Redirect to="/" /> : (
             <MainLayout currentUser={currentUser}>
               <Registration />
             </MainLayout>
