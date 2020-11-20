@@ -33,18 +33,9 @@ export const handleUserProfile = async (userAuth, additionalData) => {
 
             });
         } catch (err) {
-           // console.log(err)
+            // console.log(err)
         }
-       
+
     }
     return userRef;
-    // {
-    //     this.setState({
-    //       ...initialState
-    //     });
-    //   };
-
-    //   this.setState({
-    //     currentUser: userAuth
-    //   });
 }
