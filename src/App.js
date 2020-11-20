@@ -31,7 +31,6 @@ class App extends Component {
     this.authListener = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await handleUserProfile(userAuth);
-        if (userRef) {
           userRef.onSnapshot(snapshot => {
             this.setState({
               currentUser: {
@@ -40,7 +39,6 @@ class App extends Component {
               }
             })
           })
-        }
       }
 
       this.setState({
