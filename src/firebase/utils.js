@@ -18,6 +18,8 @@ export const handleUserProfile = async (userAuth, additionalData) => {
 
     const userRef = firestore.doc(`users/${uid}`);
     const snapshot = await userRef.get();
+    console.log("snapshot")
+    console.log(snapshot)
 
     if (!snapshot.exists) {
         const { displayName, email } = userAuth;
@@ -31,18 +33,9 @@ export const handleUserProfile = async (userAuth, additionalData) => {
 
             });
         } catch (err) {
-            //console.log(err)
+            // console.log(err)
         }
-        return userRef;
+
     }
-
-    // {
-    //     this.setState({
-    //       ...initialState
-    //     });
-    //   };
-
-    //   this.setState({
-    //     currentUser: userAuth
-    //   });
+    return userRef;
 }

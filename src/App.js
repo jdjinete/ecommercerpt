@@ -11,6 +11,7 @@ import HomepageLayout from './layouts/HomepageLayout';
 import Homepage from './pages/Homepage';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
+import Recovery from './pages/Recovery';
 import './default.scss';
 
 const initialState = {
@@ -31,16 +32,14 @@ class App extends Component {
     this.authListener = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await handleUserProfile(userAuth);
-        if (userRef) {
-          userRef.onSnapshot(snapshot => {
-            this.setState({
-              currentUser: {
-                id: snapshot.id,
-                ...snapshot.data()
-              }
-            })
+        userRef.onSnapshot(snapshot => {
+          this.setState({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data()
+            }
           })
-        }
+        })
       }
 
       this.setState({
@@ -66,7 +65,7 @@ class App extends Component {
             </HomepageLayout>
           )}
           />
-          <Route path="/registration" render={() => (
+          <Route path="/registration" render={() => currentUser ? <Redirect to="/" /> : (
             <MainLayout currentUser={currentUser}>
               <Registration />
             </MainLayout>
@@ -77,6 +76,11 @@ class App extends Component {
                 <Login />
               </MainLayout>
             )} />
+          <Route path="/recovery" render={() => (
+            <MainLayout>
+              <Recovery />
+            </MainLayout>
+          )} />
         </Switch>
       </div >
     );
