@@ -36,30 +36,29 @@ export default function SpacingGrid() {
     setSpacing(Number(event.target.value));
   };
 
-  
-
   return (
-      <div class="directorio">
-                   <p class="titulo">
-            Nuestros productos
-            </p>
+    <div class="directorio">
+      <p className="titulo">
+        Nuestros productos
+      </p>
       <Grid container className={classes.root} >
-      <Grid item xs={12}>
-        <Grid container justify="center" spacing={spacing}>
-          {[0, 1, 2].map((value) => (
-            <Grid key={value} item>
-              <Paper  className="prueba" elevation={3} 
-                 style={
+        <Grid item xs={12}>
+          <Grid container justify="center" spacing={spacing}>
+            {[0, 1, 2].map((value) => (
+              <Grid key={value} item>
+                <Paper className="prueba" elevation={3}
+                  style={
                     {
-                        backgroundImage: `url(${foto1})`                        
+                      backgroundImage: `url(${foto1})`
                     }
-                }/>
-            </Grid>
-          ))}
+                  } />
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
-	   </Grid>
-      </div>
+    </div>
 
-   
-  )}
+
+  )
+}
