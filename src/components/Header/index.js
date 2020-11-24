@@ -1,32 +1,65 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './styles.scss';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { auth } from './../../firebase/utils';
 
 import Logo from './../../assets/logopayu.png';
 
 const Header = props => {
+    const { currentUser } = props;
+
     return (
         <header className="header">
             <div className="wrap">
                 <div className="logo">
                     <Link to="/">
-                    <img src={Logo} alt="Regalo Para Ti Logo"/>
+                        <img src={Logo} alt="Regalo Para Ti Logo" />
                     </Link>
                 </div>
                 <div className="callToActions">
-                    <ul>
-                        <li>
-                            <Link to="/registration">
-                            Register
+                    {currentUser && (
+                        <ul>
+                            <li>
+                                <span onClick={() => auth.signOut()}>
+                                    LogOut
+                                </span>
+                            </li>
+                        </ul>
+                    )}
+                    {!currentUser && (
+                        <ul>
+                            <li>
+                                <Link to="/registration">
+                                    Register
                             </Link>
 
-                        </li>
-                    </ul>
+                            </li>
+                            <li>
+                                <Link to="/login">
+                                    Login
+                            </Link>
+
+                            </li>
+                        </ul>
+                    )}
+
                 </div>
             </div>
         </header>
     );
-
 };
 
-export default Header;
+Header.defaultProps = {
+    currentUser: null
+};
+
+
+const mapStateToProps = ({ user }) => ({
+    currentUser: user.currentUser
+});
+
+
+
+
+export default connect(mapStateToProps, null)(Header);
